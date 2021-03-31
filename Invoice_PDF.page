@@ -1,0 +1,34 @@
+<apex:page Controller = "CustController" renderAs="pdf" applyBodyTag="false" showHeader="true">    
+    <head>
+        <style> 
+            body { font-family: 'Arial Unicode MS'; }
+            .companyName { font: bold 30px; }  
+        </style>
+    </head>
+    <body>
+        <center>    
+            <apex:pageBlock> 
+                <apex:pageBlocksection title="Invoice">  
+                    <apex:pageBlockTable value="{! Invoices }" border= "5px" columnsWidth="150px, 150px, 150px, 150px" var="in">
+                        <apex:column value="{! in.Name }"/>
+                        <apex:column value="{! in.Invoice_Date__c }"/>
+                        <apex:column value="{! in.Course__r.Instructor__c }"/>
+                        <apex:column value="{! in.RecordTypeId}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlocksection>    
+
+                <apex:pageBlocksection title="Invoice Line Items"> 
+                    <apex:pageBlockTable value="{! lineItems }" border= "5px" columnsWidth="120px, 120px, 120px, 120px, 120px" var="lin">
+                        <apex:column value="{! lin.Name}"/>
+                        <apex:column value="{! lin.Amount__c }"/>
+                        <apex:column value="{! lin.Description__c }"/>
+                        <apex:column value="{! lin.Date__c}"/>
+                        <apex:column value="{! lin.RecordTypeId}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlocksection> 
+
+            </apex:pageBlock> 
+
+        </center>
+    </body>
+</apex:page>
